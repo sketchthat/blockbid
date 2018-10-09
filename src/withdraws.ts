@@ -1,12 +1,22 @@
 import { Common } from './common';
+import { createHmac } from './services/authentication';
 
 import { Withdraw } from './interfaces/withdraws/withdraw.interface';
 
 export class Withdraws {
   private common: Common;
 
-  constructor() {
+  private apiKey: string;
+  private apiSecret: string;
+
+  constructor(
+    apiKey?: string,
+    apiSecret?: string,
+  ) {
     this.common = new Common();
+
+    this.apiKey = apiKey;
+    this.apiSecret = apiSecret;
   }
 
   public async withdraws(currency?: string, page?: number, limit?: number): Promise<Withdraw[]> {
@@ -16,7 +26,9 @@ export class Withdraws {
       limit: (limit ? (limit > 1000 ? 1000 : limit) : 100),
     };
 
-    return this.common.request('GET', '/withdraws', qs);
+    const headers = createHmac(this.apiKey, this.apiSecret);
+
+    return this.common.request('GET', '/withdraws', qs, null, headers);
   }
 
   public async createWithdraw(address: string, currency: string, amount: string): Promise<Withdraw> {
@@ -26,6 +38,8 @@ export class Withdraws {
       amount,
     };
 
-    return this.common.request('POST', '/withdraws', null, body);
+    const headers = createHmac(this.apiKey, this.apiSecret);
+
+    return this.common.request('POST', '/withdraws', null, body, headers);
   }
 }

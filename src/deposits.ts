@@ -1,4 +1,5 @@
 import { Common } from './common';
+import { createHmac } from './services/authentication';
 
 import { Addresses } from './interfaces/deposits/addresses.interface';
 import { Deposits as DepositsResponse } from './interfaces/deposits/deposits.interface';
@@ -6,8 +7,17 @@ import { Deposits as DepositsResponse } from './interfaces/deposits/deposits.int
 export class Deposits {
   private common: Common;
 
-  constructor() {
+  private apiKey: string;
+  private apiSecret: string;
+
+  constructor(
+    apiKey?: string,
+    apiSecret?: string,
+  ) {
     this.common = new Common();
+
+    this.apiKey = apiKey;
+    this.apiSecret = apiSecret;
   }
 
   public async addresses(currency: string): Promise<Addresses> {
@@ -15,7 +25,9 @@ export class Deposits {
       currency,
     };
 
-    return this.common.request('GET', '/addresses', qs);
+    const headers = createHmac(this.apiKey, this.apiSecret);
+
+    return this.common.request('GET', '/addresses', qs, null, headers);
   }
 
   public async deposits(currency: string, limit: number, state: string): Promise<DepositsResponse[]> {
@@ -25,10 +37,14 @@ export class Deposits {
       state,
     };
 
-    return this.common.request('GET', '/deposits', qs);
+    const headers = createHmac(this.apiKey, this.apiSecret);
+
+    return this.common.request('GET', '/deposits', qs, null, headers);
   }
 
   public async deposit(id: number): Promise<DepositsResponse> {
-    return this.common.request('GET', `/deposits/${id}`);
+    const headers = createHmac(this.apiKey, this.apiSecret);
+
+    return this.common.request('GET', `/deposits/${id}`, null, null, headers);
   }
 }

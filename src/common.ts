@@ -1,5 +1,7 @@
 import * as rp from 'request-promise';
 
+import { HmacResponse } from './services/hmacResponse.interface';
+
 export class Common {
   private uri: string;
 
@@ -8,13 +10,14 @@ export class Common {
     this.uri = `https://${domain}`;
   }
 
-  public async request(method: string, path: string, qs?: object, body?: object): Promise<any> {
+  public async request(method: string, path: string, qs?: object, body?: object, headers?: HmacResponse): Promise<any> {
     const opts = {
       uri: `${this.uri}${path}`,
       json: true,
-      method: method,
-      qs: qs,
-      body: body,
+      body,
+      headers,
+      method,
+      qs,
     };
 
     return rp(opts);

@@ -1,4 +1,5 @@
 import { Common } from './common';
+import { createHmac } from './services/authentication';
 
 import { Markets as MarketsResponse } from './interfaces/markets/markets.interface';
 import { Ohlc, OhlcPeriodType } from './interfaces/markets/ohlc.interface';
@@ -9,8 +10,17 @@ import { Trades, TradesOrderByType } from './interfaces/markets/trades.interface
 export class Markets {
   private common: Common;
 
-  constructor() {
+  private apiKey: string;
+  private apiSecret: string;
+
+  constructor(
+    apiKey?: string,
+    apiSecret?: string,
+  ) {
     this.common = new Common();
+
+    this.apiKey = apiKey;
+    this.apiSecret = apiSecret;
   }
 
   public async markets(): Promise<MarketsResponse[]> {
@@ -79,9 +89,9 @@ export class Markets {
       order_by: orderBy,
     };
 
-    // Authentication Required
+    const headers = createHmac(this.apiKey, this.apiSecret);
 
-    return this.common.request('GET', '/trades/my', qs);
+    return this.common.request('GET', '/trades/my', qs, null, headers);
   }
 
 }
