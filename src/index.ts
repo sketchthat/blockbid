@@ -1,17 +1,29 @@
-import { Api } from './api';
+import { Accounts } from './accounts';
+import { Apis } from './apis';
+import { Deposits } from './deposits';
 import { Markets } from './markets';
 
 export class BlockBid {
-  private apiClass: Api;
+  private accountsClass: Accounts;
+  private apisClass: Apis;
+  private depositsClass: Deposits;
   private marketsClass: Markets;
 
   constructor() {
-    this.apiClass = new Api();
+    this.apisClass = new Apis();
     this.marketsClass = new Markets();
   }
 
-  public api() {
-    return this.apiClass;
+  public accounts() {
+    return this.accountsClass;
+  }
+
+  public apis() {
+    return this.apisClass;
+  }
+
+  public deposits() {
+    return this.depositsClass;
   }
 
   public markets() {

@@ -61,4 +61,27 @@ export class Markets {
 
     return this.common.request('GET', '/trades', qs);
   }
+
+  public async tradesMy(
+    market: string,
+    limit?: number,
+    timestamp?: number,
+    from?: number,
+    to?: number,
+    orderBy?: TradesOrderByType,
+  ): Promise<Trades> {
+    const qs = {
+      market,
+      limit,
+      timestamp,
+      from,
+      to,
+      order_by: orderBy,
+    };
+
+    // Authentication Required
+
+    return this.common.request('GET', '/trades/my', qs);
+  }
+
 }
