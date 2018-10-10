@@ -29,7 +29,7 @@ describe('Apis', () => {
     hmacStub.restore();
   });
 
-  it('should call createKey without params', async () => {
+  it('should call apiKeys without params', async () => {
     hmacStub.returns({
       'X-Blockbid-Api-Key': 'MyApiKey',
       'X-Blockbid-Nonce': 1541581502000,
@@ -37,13 +37,13 @@ describe('Apis', () => {
     });
 
     commonStub.returns({
-      apis: 'createKey',
+      apis: 'apiKeys',
     });
 
-    const resp: any = await apis.createKey('112233');
+    const resp: any = await apis.apiKeys('112233');
 
     const expectedMockReturn = {
-      apis: 'createKey',
+      apis: 'apiKeys',
     };
 
     assert.deepEqual(resp, expectedMockReturn);
@@ -79,7 +79,7 @@ describe('Apis', () => {
     assert.strictEqual(commonStub.callCount, 1);
   });
 
-  it('should call createKey with params', async () => {
+  it('should call apiKeys with params', async () => {
     hmacStub.returns({
       'X-Blockbid-Api-Key': 'MyApiKey',
       'X-Blockbid-Nonce': 1541581502000,
@@ -87,13 +87,13 @@ describe('Apis', () => {
     });
 
     commonStub.returns({
-      apis: 'createKey',
+      apis: 'apiKeys',
     });
 
-    const resp: any = await apis.createKey('112233', 'someScope');
+    const resp: any = await apis.apiKeys('112233', 'someScope');
 
     const expectedMockReturn = {
-      apis: 'createKey',
+      apis: 'apiKeys',
     };
 
     assert.deepEqual(resp, expectedMockReturn);

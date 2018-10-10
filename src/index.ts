@@ -19,6 +19,7 @@ export class BlockBid {
   ) {
     this.accountsClass = new Accounts(apiKey, apiSecret);
     this.apisClass = new Apis(apiKey, apiSecret);
+    this.depositsClass = new Deposits(apiKey, apiSecret);
     this.marketsClass = new Markets(apiKey, apiSecret);
     this.ordersClass = new Orders(apiKey, apiSecret);
     this.withdrawsClass = new Withdraws(apiKey, apiSecret);

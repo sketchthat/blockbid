@@ -1,7 +1,7 @@
 import { Common } from './common';
 import { createHmac } from './services/authentication';
 
-import { CreateKeys } from './interfaces/apis/createKeys.interface';
+import { ApiKeys } from './interfaces/apis/apiKeys.interface';
 
 export class Apis {
   private common: Common;
@@ -19,7 +19,7 @@ export class Apis {
     this.apiSecret = apiSecret;
   }
 
-  public async createKey(totpCode: string, scopes?: string): Promise<CreateKeys> {
+  public async apiKeys(totpCode: string, scopes?: string): Promise<ApiKeys> {
     const body = {
       totp_code: totpCode,
       scopes,

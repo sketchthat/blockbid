@@ -1,4 +1,4 @@
-export interface CreateKeys {
+export interface ApiKeys {
   key: string;
   secret: string;
 }
