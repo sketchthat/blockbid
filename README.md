@@ -19,11 +19,19 @@ TODO
 
 ## Usage
 
-TODO
+The API wrapper exposes several classes, `Accounts`, `Apis`, `Deposits`, `Markets`, `Orders` and `Withdraws`. Each class has methods for each API Endpoint as specified in the [BlockBid API Documentation](https://docs.blockbid.io/).
 
 ### Exposed Functions
 
-TODO
+Authentication is required for some functions within each class. When requesting public end-points API Keys aren't required.
+
+- `Accounts` methods are within [`accounts.ts`](https://github.com/sketchthat/blockbid/blob/master/src/accounts.ts)
+- `Apis` methods are within [`apis.ts`](https://github.com/sketchthat/blockbid/blob/master/src/apis.ts)
+- `Deposits` methods are within [`deposits.ts`](https://github.com/sketchthat/blockbid/blob/master/src/deposits.ts)
+- `Markets` methods are within [`markets.ts`](https://github.com/sketchthat/blockbid/blob/master/src/markets.ts)
+- `Orders` methods are within [`orders.ts`](https://github.com/sketchthat/blockbid/blob/master/src/orders.ts)
+- `Withdraws` methods are within [`withdraws.ts`](https://github.com/sketchthat/blockbid/blob/master/src/withdraws.ts)
+
 
 ### Example
 
@@ -33,9 +41,27 @@ Examples for usage of each function can be found within the [examples folder]
 ```typescript
 import { BlockBid } from 'blockbid';
 
+// Public Method
 const bb = new BlockBid();
 
-// TODO
+bb.orders().markets()
+  .then(resp => {
+    console.log(resp);
+  })
+  .catch(err => {
+    console.error(err.message);
+  });
+
+// Private Method
+const bbPrivate = new BlockBid('MyApiKey', 'MyApiSecret');
+
+bbPrivate.orders().order(112233)
+  .then(resp => {
+    console.log(resp);
+  })
+  .catch(err => {
+    console.error(err.message);
+  });
 ```
 
 
