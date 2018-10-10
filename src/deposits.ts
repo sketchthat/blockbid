@@ -30,7 +30,7 @@ export class Deposits {
     return this.common.request('GET', '/addresses', qs, null, headers);
   }
 
-  public async deposits(currency: string, limit: number, state: string): Promise<DepositsResponse[]> {
+  public async deposits(currency?: string, limit?: number, state?: string): Promise<DepositsResponse[]> {
     const qs = {
       currency,
       limit,
