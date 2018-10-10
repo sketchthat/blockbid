@@ -19,5 +19,6 @@ export function createHmac(apiKey: string, apiSecret: string): HmacResponse {
 }
 
 function toBase64(value: string): string {
+  console.log({ value });
   return Buffer.from(value).toString('base64');
 }
