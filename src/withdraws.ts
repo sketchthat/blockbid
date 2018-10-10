@@ -20,11 +20,11 @@ export class Withdraws {
   }
 
   public async withdraws(currency?: string, page?: number, limit?: number): Promise<Withdraw[]> {
-    const qs = this.common.buildParams({
+    const qs = {
       currency,
       page: (page ? page : 1),
       limit: (limit ? (limit > 1000 ? 1000 : limit) : 100),
-    });
+    };
 
     const headers = createHmac(this.apiKey, this.apiSecret);
 
@@ -32,11 +32,11 @@ export class Withdraws {
   }
 
   public async createWithdraw(address: string, currency: string, amount: string): Promise<Withdraw> {
-    const body = this.common.buildParams({
+    const body = {
       address,
       currency,
       amount,
-    });
+    };
 
     const headers = createHmac(this.apiKey, this.apiSecret);
 

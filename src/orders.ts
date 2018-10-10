@@ -20,12 +20,13 @@ export class Orders {
     this.apiSecret = apiSecret;
   }
 
-  public async orders(market: string, state?: string, limit?: number, page?: number): Promise<Order[]> {
+  public async orders(market: string, state?: string, limit?: number, page?: number, orderBy?: string): Promise<Order[]> {
     const qs = {
       market,
       state,
       limit,
       page,
+      order_by: orderBy,
     };
 
     const headers = createHmac(this.apiKey, this.apiSecret);
@@ -60,9 +61,9 @@ export class Orders {
     return this.common.request('DELETE', '/orders', null, body, headers);
   }
 
-  public async cancelOrder(id?: number): Promise<Order> {
+  public async cancelOrder(id: number): Promise<Order> {
     const headers = createHmac(this.apiKey, this.apiSecret);
 
-    return this.common.request('DELETE', `/orders/${id}`, headers);
+    return this.common.request('DELETE', `/orders/${id}`, null, null, headers);
   }
 }

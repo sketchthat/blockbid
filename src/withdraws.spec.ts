@@ -56,12 +56,14 @@ describe('Withdraws', () => {
     ];
 
     assert.deepEqual(hmacStub.args, expectedHmacArgs);
+    assert.strictEqual(hmacStub.callCount, 1);
 
     const expectedCommonArgs = [
       [
         'GET',
         '/withdraws',
         {
+          currency: undefined,
           page: 1,
           limit: 100,
         },
@@ -75,6 +77,7 @@ describe('Withdraws', () => {
     ];
 
     assert.deepEqual(commonStub.args, expectedCommonArgs);
+    assert.strictEqual(commonStub.callCount, 1);
   });
 
   it('should call withdraws with params', async () => {
@@ -104,6 +107,7 @@ describe('Withdraws', () => {
     ];
 
     assert.deepEqual(hmacStub.args, expectedHmacArgs);
+    assert.strictEqual(hmacStub.callCount, 1);
 
     const expectedCommonArgs = [
       [
@@ -124,6 +128,7 @@ describe('Withdraws', () => {
     ];
 
     assert.deepEqual(commonStub.args, expectedCommonArgs);
+    assert.strictEqual(commonStub.callCount, 1);
   });
 
   it('should call withdraws with invalid limit', async () => {
@@ -153,6 +158,7 @@ describe('Withdraws', () => {
     ];
 
     assert.deepEqual(hmacStub.args, expectedHmacArgs);
+    assert.strictEqual(hmacStub.callCount, 1);
 
     const expectedCommonArgs = [
       [
@@ -173,6 +179,7 @@ describe('Withdraws', () => {
     ];
 
     assert.deepEqual(commonStub.args, expectedCommonArgs);
+    assert.strictEqual(commonStub.callCount, 1);
   });
 
   it('should call withdraws with invalid limit', async () => {
@@ -202,6 +209,7 @@ describe('Withdraws', () => {
     ];
 
     assert.deepEqual(hmacStub.args, expectedHmacArgs);
+    assert.strictEqual(hmacStub.callCount, 1);
 
     const expectedCommonArgs = [
       [
@@ -222,365 +230,6 @@ describe('Withdraws', () => {
     ];
 
     assert.deepEqual(commonStub.args, expectedCommonArgs);
+    assert.strictEqual(commonStub.callCount, 1);
   });
-
-  // it('should call orderMatchResults', async () => {
-  //   hmacStub.returns({
-  //     method: 'mockMethod',
-  //     path: '/mockPath',
-  //     qs: {
-  //       mock: 'method',
-  //     },
-  //   });
-
-  //   commonStub.returns({
-  //     trade: 'order',
-  //   });
-
-  //   const resp: any = await trade.orderMatchResults('112233');
-
-  //   const expectedMockReturn = {
-  //     trade: 'order',
-  //   };
-
-  //   assert.deepEqual(resp, expectedMockReturn);
-
-  //   const expectedHmacArgs = [
-  //     [
-  //       'GET',
-  //       '/v1/order/orders/112233/matchresults',
-  //       'MyAccessTokenId',
-  //       'MyPrivateKey',
-  //     ],
-  //   ];
-
-  //   assert.deepEqual(hmacStub.args, expectedHmacArgs);
-
-  //   const expectedCommonArgs = [
-  //     [
-  //       'mockMethod',
-  //       '/mockPath',
-  //       { mock: 'method' },
-  //     ],
-  //   ];
-
-  //   assert.deepEqual(commonStub.args, expectedCommonArgs);
-  // });
-
-  // it('should call orders', async () => {
-  //   hmacStub.returns({
-  //     method: 'mockMethod',
-  //     path: '/mockPath',
-  //     qs: {
-  //       mock: 'method',
-  //     },
-  //   });
-
-  //   commonStub.returns({
-  //     trade: 'orders',
-  //   });
-
-  //   const resp: any = await trade.orders(
-  //     'btcaud',
-  //     ['filled', 'partial-filled'],
-  //     '115588',
-  //     ['sell-limit', 'buy-limit'],
-  //     '2018-01-26',
-  //     '2018-01-30',
-  //     '99999999',
-  //     'prev',
-  //     '2',
-  //   );
-
-  //   const expectedMockReturn = {
-  //     trade: 'orders',
-  //   };
-
-  //   assert.deepEqual(resp, expectedMockReturn);
-
-  //   const expectedHmacArgs = [
-  //     [
-  //       'GET',
-  //       '/v1/order/orders',
-  //       'MyAccessTokenId',
-  //       'MyPrivateKey',
-  //       {
-  //         accountId: '115588',
-  //         direct: 'prev',
-  //         endDate: '2018-01-30',
-  //         from: '99999999',
-  //         size: '2',
-  //         startDate: '2018-01-26',
-  //         states: 'filled,partial-filled',
-  //         symbol: 'btcaud',
-  //         types: 'sell-limit,buy-limit',
-  //       },
-  //     ],
-  //   ];
-
-  //   assert.deepEqual(hmacStub.args, expectedHmacArgs);
-
-  //   const expectedCommonArgs = [
-  //     [
-  //       'mockMethod',
-  //       '/mockPath',
-  //       { mock: 'method' },
-  //     ],
-  //   ];
-
-  //   assert.deepEqual(commonStub.args, expectedCommonArgs);
-  // });
-
-  // it('should call partial orders', async () => {
-  //   hmacStub.returns({
-  //     method: 'mockMethod',
-  //     path: '/mockPath',
-  //     qs: {
-  //       mock: 'method',
-  //     },
-  //   });
-
-  //   commonStub.returns({
-  //     trade: 'orders',
-  //   });
-
-  //   const resp: any = await trade.orders(
-  //     'btcaud',
-  //     ['partial-filled'],
-  //   );
-
-  //   const expectedMockReturn = {
-  //     trade: 'orders',
-  //   };
-
-  //   assert.deepEqual(resp, expectedMockReturn);
-
-  //   const expectedHmacArgs = [
-  //     [
-  //       'GET',
-  //       '/v1/order/orders',
-  //       'MyAccessTokenId',
-  //       'MyPrivateKey',
-  //       {
-  //         states: 'partial-filled',
-  //         symbol: 'btcaud',
-  //       },
-  //     ],
-  //   ];
-
-  //   assert.deepEqual(hmacStub.args, expectedHmacArgs);
-
-  //   const expectedCommonArgs = [
-  //     [
-  //       'mockMethod',
-  //       '/mockPath',
-  //       { mock: 'method' },
-  //     ],
-  //   ];
-
-  //   assert.deepEqual(commonStub.args, expectedCommonArgs);
-  // });
-
-  // it('should call ordersPlace', async () => {
-  //   hmacStub.returns({
-  //     method: 'mockMethod',
-  //     path: '/mockPath',
-  //     qs: {
-  //       mock: 'method',
-  //     },
-  //   });
-
-  //   commonStub.returns({
-  //     trade: 'ordersPlace',
-  //   });
-
-  //   const resp: any = await trade.ordersPlace(
-  //     'btcaud',
-  //     'buy-limit',
-  //     '115599',
-  //     '0.001',
-  //     '1',
-  //   );
-
-  //   const expectedMockReturn = {
-  //     trade: 'ordersPlace',
-  //   };
-
-  //   assert.deepEqual(resp, expectedMockReturn);
-
-  //   const expectedHmacArgs = [
-  //     [
-  //       'POST',
-  //       '/v1/order/orders/place',
-  //       'MyAccessTokenId',
-  //       'MyPrivateKey',
-  //     ],
-  //   ];
-
-  //   assert.deepEqual(hmacStub.args, expectedHmacArgs);
-
-  //   const expectedCommonArgs = [
-  //     [
-  //       'mockMethod',
-  //       '/mockPath',
-  //       { mock: 'method' },
-  //       {
-  //         'account-id': '115599',
-  //         amount: '0.001',
-  //         price: '1',
-  //         symbol: 'btcaud',
-  //         type: 'buy-limit',
-  //       },
-  //     ],
-  //   ];
-
-  //   assert.deepEqual(commonStub.args, expectedCommonArgs);
-  // });
-
-  // it('should call partial ordersPlace', async () => {
-  //   hmacStub.returns({
-  //     method: 'mockMethod',
-  //     path: '/mockPath',
-  //     qs: {
-  //       mock: 'method',
-  //     },
-  //   });
-
-  //   commonStub.returns({
-  //     trade: 'ordersPlace',
-  //   });
-
-  //   const resp: any = await trade.ordersPlace(
-  //     'btcaud',
-  //     'buy-market',
-  //     '115599',
-  //     '0.5',
-  //   );
-
-  //   const expectedMockReturn = {
-  //     trade: 'ordersPlace',
-  //   };
-
-  //   assert.deepEqual(resp, expectedMockReturn);
-
-  //   const expectedHmacArgs = [
-  //     [
-  //       'POST',
-  //       '/v1/order/orders/place',
-  //       'MyAccessTokenId',
-  //       'MyPrivateKey',
-  //     ],
-  //   ];
-
-  //   assert.deepEqual(hmacStub.args, expectedHmacArgs);
-
-  //   const expectedCommonArgs = [
-  //     [
-  //       'mockMethod',
-  //       '/mockPath',
-  //       { mock: 'method' },
-  //       {
-  //         'account-id': '115599',
-  //         amount: '0.5',
-  //         symbol: 'btcaud',
-  //         type: 'buy-market',
-  //       },
-  //     ],
-  //   ];
-
-  //   assert.deepEqual(commonStub.args, expectedCommonArgs);
-  // });
-
-  // it('should call ordersSubmitCancel', async () => {
-  //   hmacStub.returns({
-  //     method: 'mockMethod',
-  //     path: '/mockPath',
-  //     qs: {
-  //       mock: 'method',
-  //     },
-  //   });
-
-  //   commonStub.returns({
-  //     trade: 'ordersSubmitCancel',
-  //   });
-
-  //   const resp: any = await trade.ordersSubmitCancel('112233');
-
-  //   const expectedMockReturn = {
-  //     trade: 'ordersSubmitCancel',
-  //   };
-
-  //   assert.deepEqual(resp, expectedMockReturn);
-
-  //   const expectedHmacArgs = [
-  //     [
-  //       'POST',
-  //       '/v1/order/orders/112233/submitcancel',
-  //       'MyAccessTokenId',
-  //       'MyPrivateKey',
-  //     ],
-  //   ];
-
-  //   assert.deepEqual(hmacStub.args, expectedHmacArgs);
-
-  //   const expectedCommonArgs = [
-  //     [
-  //       'mockMethod',
-  //       '/mockPath',
-  //       { mock: 'method' },
-  //     ],
-  //   ];
-
-  //   assert.deepEqual(commonStub.args, expectedCommonArgs);
-  // });
-
-  // it('should call ordersBatchCancel', async () => {
-  //   hmacStub.returns({
-  //     method: 'mockMethod',
-  //     path: '/mockPath',
-  //     qs: {
-  //       mock: 'method',
-  //     },
-  //   });
-
-  //   commonStub.returns({
-  //     trade: 'ordersBatchCancel',
-  //   });
-
-  //   const resp: any = await trade.ordersBatchCancel(['112233', '223344', '556677']);
-
-  //   const expectedMockReturn = {
-  //     trade: 'ordersBatchCancel',
-  //   };
-
-  //   assert.deepEqual(resp, expectedMockReturn);
-
-  //   const expectedHmacArgs = [
-  //     [
-  //       'POST',
-  //       '/v1/order/orders/batchcancel',
-  //       'MyAccessTokenId',
-  //       'MyPrivateKey',
-  //     ],
-  //   ];
-
-  //   assert.deepEqual(hmacStub.args, expectedHmacArgs);
-
-  //   const expectedCommonArgs = [
-  //     [
-  //       'mockMethod',
-  //       '/mockPath',
-  //       { mock: 'method' },
-  //       {
-  //         'order-ids': [
-  //           '112233',
-  //           '223344',
-  //           '556677',
-  //         ],
-  //       },
-  //     ],
-  //   ];
-
-  //   assert.deepEqual(commonStub.args, expectedCommonArgs);
-  // });
 });

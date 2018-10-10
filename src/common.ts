@@ -14,16 +14,16 @@ export class Common {
     const opts = {
       uri: `${this.uri}${path}`,
       json: true,
-      body,
+      body: this.buildParams(body),
       headers,
       method,
-      qs,
+      qs: this.buildParams(qs),
     };
 
     return rp(opts);
   }
 
-  public buildParams(params: any): any {
+  private buildParams(params: any): any {
     const returnParams = {};
 
     Object.keys(params)
