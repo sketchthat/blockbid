@@ -1,6 +1,6 @@
 {
   "name": "blockbid",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Typescript wrapper for BlockBid Australia Exchange",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
