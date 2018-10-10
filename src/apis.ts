@@ -19,7 +19,7 @@ export class Apis {
     this.apiSecret = apiSecret;
   }
 
-  public async createKey(totpCode: string, scopes: string): Promise<CreateKeys> {
+  public async createKey(totpCode: string, scopes?: string): Promise<CreateKeys> {
     const body = {
       totp_code: totpCode,
       scopes,
