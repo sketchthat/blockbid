@@ -3,11 +3,11 @@ import * as crypto from 'crypto';
 import { HmacResponse } from '../interfaces/hmacResponse.interface';
 
 export function createHmac(apiKey: string, apiSecret: string): HmacResponse {
-  const nonce = Date.now();
+  const nonce = new Date().getTime();
 
   console.log({ nonce });
 
-  const rawSignature = toBase64(apiKey) + toBase64(nonce.toString());
+  const rawSignature = `${toBase64(apiKey)}${toBase64(nonce.toString())}`;
 
   const hmacSignature = crypto.createHmac('sha384', apiSecret)
     .update(rawSignature)
