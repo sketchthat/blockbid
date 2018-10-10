@@ -1,6 +1,6 @@
 import * as rp from 'request-promise';
 
-import { HmacResponse } from './services/hmacResponse.interface';
+import { HmacResponse } from './interfaces/hmacResponse.interface';
 
 export class Common {
   private uri: string;
@@ -21,5 +21,18 @@ export class Common {
     };
 
     return rp(opts);
+  }
+
+  public buildParams(params: any): any {
+    const returnParams = {};
+
+    Object.keys(params)
+      .forEach(key => {
+        if (params[key]) {
+          returnParams[key] = params[key];
+        }
+      });
+
+    return returnParams;
   }
 }

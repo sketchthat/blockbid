@@ -1,6 +1,6 @@
 import * as crypto from 'crypto';
 
-import { HmacResponse } from './hmacResponse.interface';
+import { HmacResponse } from '../interfaces/hmacResponse.interface';
 
 export function createHmac(apiKey: string, apiSecret: string): HmacResponse {
   const nonce = Date.now();
