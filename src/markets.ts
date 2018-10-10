@@ -34,8 +34,8 @@ export class Markets {
   public async ohlc(market: string, limit?: number, period?: OhlcPeriodType, timestamp?: number): Promise<Ohlc> {
     const qs = {
       market,
-      limit,
-      period,
+      limit: limit ? limit : 30,
+      period: period ? period : 1,
       timestamp,
     };
 
@@ -45,8 +45,8 @@ export class Markets {
   public async orderbook(market: string, asksLimit?: number, bidsLimit?: number): Promise<Orderbooks> {
     const qs = {
       market,
-      asks_limit: asksLimit,
-      bids_limit: bidsLimit,
+      asks_limit: asksLimit ? asksLimit : 20,
+      bids_limit: bidsLimit ? bidsLimit : 20,
     };
 
     return this.common.request('GET', '/orderbook', qs);
@@ -62,11 +62,11 @@ export class Markets {
   ): Promise<Trades> {
     const qs = {
       market,
-      limit,
+      limit: limit ? limit : 50,
       timestamp,
       from,
       to,
-      order_by: orderBy,
+      order_by: orderBy ? orderBy : 'desc',
     };
 
     return this.common.request('GET', '/trades', qs);
@@ -82,11 +82,11 @@ export class Markets {
   ): Promise<Trades> {
     const qs = {
       market,
-      limit,
+      limit: limit ? limit : 50,
       timestamp,
       from,
       to,
-      order_by: orderBy,
+      order_by: orderBy ? orderBy : 'desc',
     };
 
     const headers = createHmac(this.apiKey, this.apiSecret);
