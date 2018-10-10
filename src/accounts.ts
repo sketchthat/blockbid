@@ -32,13 +32,9 @@ export class Accounts {
     return this.common.request('GET', '/accounts', null, null, headers);
   }
 
-  public async account(accountId: string, currency: string): Promise<Account> {
-    const qs = {
-      currency,
-    };
-
+  public async account(accountId: string): Promise<Account> {
     const headers = createHmac(this.apiKey, this.apiSecret);
 
-    return this.common.request('GET', `/accounts/${accountId}`, qs, null, headers);
+    return this.common.request('GET', `/accounts/${accountId}`, null, null, headers);
   }
 }
