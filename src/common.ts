@@ -26,12 +26,14 @@ export class Common {
   private buildParams(params: any): any {
     const returnParams = {};
 
-    Object.keys(params)
-      .forEach(key => {
-        if (params[key]) {
-          returnParams[key] = params[key];
-        }
-      });
+    if (params) {
+      Object.keys(params)
+        .forEach(key => {
+          if (params[key]) {
+            returnParams[key] = params[key];
+          }
+        });
+    }
 
     return returnParams;
   }
