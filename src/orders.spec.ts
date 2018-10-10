@@ -362,8 +362,6 @@ describe('Orders', () => {
     assert.strictEqual(commonStub.callCount, 1);
   });
 
-
-
   it('should call cancelOrder', async () => {
     hmacStub.returns({
       'X-Blockbid-Api-Key': 'MyApiKey',
